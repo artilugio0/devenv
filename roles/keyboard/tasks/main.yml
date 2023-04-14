@@ -1,0 +1,7 @@
+- name: map capslock to esc
+  copy:
+    src: xprofile
+    dest: '/home/{{ user }}/.xprofile'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

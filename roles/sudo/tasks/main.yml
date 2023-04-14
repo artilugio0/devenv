@@ -1,0 +1,20 @@
+- name: install sudo
+  pacman:
+    name: sudo
+    state: present
+
+- name: configure sudoers
+  copy:
+    src: sudoers
+    dest: /etc/sudoers
+    mode: 0400
+    owner: root
+    group: root
+
+- name: create /etc/sudoers.d
+  file:
+    dest: /etc/sudoers.d
+    mode: 0500
+    owner: root
+    group: root
+    state: directory

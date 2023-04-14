@@ -1,0 +1,7 @@
+- name: install neovim
+  get_url:
+    url: 'https://github.com/neovim/neovim/releases/download/stable/nvim.appimage'
+    dest: /usr/local/bin/nvim
+    mode: 0555
+    owner: root
+    group: root

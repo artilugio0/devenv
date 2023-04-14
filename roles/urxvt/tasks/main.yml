@@ -1,0 +1,12 @@
+- name: install urxvt
+  pacman:
+    name: rxvt-unicode
+    state: present
+
+- name: configure urxvt
+  copy:
+    src: Xresources
+    dest: '/home/{{ user }}/.Xresources'
+    owner: '{{ user }}'
+    group: '{{ group }}'
+    mode: 0400

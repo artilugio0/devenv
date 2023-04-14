@@ -1,0 +1,20 @@
+---
+- name: devenv configuration
+  hosts: localhost
+  vars_files:
+    - config_vars.yml
+  roles:
+    - begin
+    - sudo
+    - user
+    - fsutils
+    - neovim
+    - xorg
+    - lightdm
+    - i3
+    - urxvt
+    - tmux
+    - git
+    - firefox
+    - virtualbox-guest
+    - ssh

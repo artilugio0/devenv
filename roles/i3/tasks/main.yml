@@ -1,0 +1,29 @@
+- name: install i3
+  pacman:
+    name:
+      - i3-wm
+      - dmenu
+    state: present
+
+- name: create i3 config dir
+  file:
+    dest: '/home/{{ user }}/.config/i3'
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'
+    state: directory
+
+- name: configure i3
+  copy:
+    src: config
+    dest: '/home/{{ user }}/.config/i3/config'
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'
+  register: configure_i3
+
+- name: reload i3 config
+  command: i3-msg reload
+  become: yes
+  become_user: '{{ user }}'
+  when: configure_i3.changed

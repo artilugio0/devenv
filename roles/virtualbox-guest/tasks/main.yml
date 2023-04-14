@@ -1,0 +1,10 @@
+- name: install virtualbox guest additions
+  pacman:
+    name: virtualbox-guest-utils
+    state: present
+
+- name: enable virtualbox service
+  service:
+    name: vboxservice.service
+    enabled: true
+    state: started

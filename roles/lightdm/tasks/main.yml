@@ -1,0 +1,11 @@
+- name: install lightdm
+  pacman:
+    name:
+      - lightdm
+      - lightdm-gtk-greeter
+    state: present
+
+- name: enable lightdm service
+  service:
+    name: lightdm.service
+    enabled: true

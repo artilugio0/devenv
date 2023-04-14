@@ -1,0 +1,19 @@
+- name: 'create {{ group }} group'
+  group:
+    name: '{{ group }}'
+    gid: '{{ gid }}'
+
+- name: 'create {{ user }} user'
+  user:
+    name: '{{ user }}'
+    uid: '{{ uid }}'
+    group: '{{ group }}'
+    shell: /bin/bash
+
+- name: 'configure sudo for {{ user }} user'
+  template:
+    src: user-sudoers
+    dest: /etc/sudoers.d/user-sudoers
+    mode: 0400
+    owner: root
+    group: root

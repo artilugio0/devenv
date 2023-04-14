@@ -1,0 +1,4 @@
+- name: install fuse
+  pacman:
+    name: fuse
+    state: present

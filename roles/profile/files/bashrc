@@ -1,0 +1,7 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+for ENV_FILE in $(ls $HOME/.profile.d/*.env)
+do
+	source "$ENV_FILE"
+done

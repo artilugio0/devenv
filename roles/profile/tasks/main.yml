@@ -1,0 +1,31 @@
+- name: configure bashrc
+  copy:
+    src: bashrc
+    dest: '/home/{{ user }}/.bashrc'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: configure bash_profile
+  copy:
+    src: bash_profile
+    dest: '/home/{{ user }}/.bash_profile'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: create profile.d directory
+  file:
+    dest: '/home/{{ user }}/.profile.d'
+    state: directory
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: add my default configurations
+  copy:
+    src: 00-default.env
+    dest: '/home/{{ user }}/.profile.d/00-default.env'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

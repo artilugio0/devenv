@@ -10,3 +10,11 @@
     owner: '{{ user }}'
     group: '{{ group }}'
     mode: 0400
+  register: configure_urxvt
+
+- name: reload urxvt configuration
+  command: 'xrdb /home/{{ user }}/.Xresources'
+  become: yes
+  become_user: '{{ user }}'
+  when: configure_urxvt.changed
+

@@ -1,0 +1,12 @@
+- name: install openssh
+  pacman:
+    name: openssh
+    state: present
+
+- name: configure ssh client
+  template:
+    src: config
+    dest: '/home/{{ user }}/.ssh/config'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

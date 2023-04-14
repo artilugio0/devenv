@@ -2,4 +2,4 @@ user: 'elaleman'
 uid: 1234
 group: 'elaleman'
 gid: 1234
-ssh_key_file: '~/.ssh/elalemanx-gihub'
+ssh_key_file: '~/.ssh/elalemanx-github'

@@ -8,6 +8,7 @@
     - sudo
     - user
     - profile
+    - scriptsdir
     - fsutils
     - neovim
     - xorg

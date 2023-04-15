@@ -1,0 +1,15 @@
+- name: create scripts directory
+  file:
+    dest: '/home/{{ user }}/scripts'
+    state: directory
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: add scripts directory to PATH
+  template:
+    src: 01-scriptsdir.env
+    dest: '/home/{{ user }}/.profile.d/01-scriptsdir.env'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

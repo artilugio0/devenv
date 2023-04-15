@@ -15,3 +15,11 @@
     mode: 0400
     owner: '{{ user }}'
     group: '{{ group }}'
+
+- name: create ,devmux script
+  copy:
+    src: ',devmux'
+    dest: '/home/{{ user }}/scripts/,devmux'
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'

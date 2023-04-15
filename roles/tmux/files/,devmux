@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Get session name
+SESSION_NAME="$(pwd | awk -F'/' '{print $NF}')"
+
+# Create tmux session in the background
+tmux new -s "$SESSION_NAME" -d
+
+# Create tmux windows
+tmux rename-window -t "$SESSION_NAME":0 "terminal" 
+
+tmux new-window -n "editor" -t "$SESSION_NAME"
+tmux send-keys -t "$SESSION_NAME:editor" "nvim" C-m
+
+tmux new-window -n "test" -t "$SESSION_NAME"
+
+tmux new-window -n "git" -t "$SESSION_NAME"
+tmux send-keys -t "$SESSION_NAME:git" "git status" C-m
+
+# Attach to the tmux session
+tmux attach -t "$SESSION_NAME:editor"

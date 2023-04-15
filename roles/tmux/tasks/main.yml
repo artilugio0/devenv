@@ -2,3 +2,16 @@
   pacman:
     name: tmux
     state: present
+
+- name: install xclip
+  pacman:
+    name: xclip
+    state: present
+
+- name: configure tmux
+  copy:
+    src: tmux.conf
+    dest: '/home/{{ user }}/.tmux.conf'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

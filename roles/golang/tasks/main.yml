@@ -35,13 +35,13 @@
 - name: install gopls
   shell: 'GOPATH=/home/{{ user }}/go/{{ golang_version }}/gopath /home/{{ user }}/go/{{ golang_version }}/go/bin/go install golang.org/x/tools/gopls@latest'
   args:
-    creates: '/home/{{ user }}/go/{{ golang_version }}/go/bin/gopls'
+    creates: '/home/{{ user }}/go/{{ golang_version }}/gopath/bin/gopls'
   become: yes
   become_user: '{{ user }}'
 
 - name: install goimports
   shell: 'GOPATH=/home/{{ user }}/go/{{ golang_version }}/gopath /home/{{ user }}/go/{{ golang_version }}/go/bin/go install golang.org/x/tools/cmd/goimports@latest'
   args:
-    creates: '/home/{{ user }}/go/{{ golang_version }}/go/bin/goimports'
+    creates: '/home/{{ user }}/go/{{ golang_version }}/gopath/bin/goimports'
   become: yes
   become_user: '{{ user }}'

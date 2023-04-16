@@ -33,3 +33,11 @@
   become: yes
   become_user: '{{ user }}'
   when: neovim_config.changed
+
+- name: configure neovim environment
+  copy:
+    src: '01-neovim.env'
+    dest: '/home/{{ user }}/.profile.d/01-neovim.env'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

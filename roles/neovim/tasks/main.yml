@@ -6,6 +6,19 @@
     owner: root
     group: root
 
+- name: install neovim configuration dependencies
+  pacman:
+    name: ripgrep
+    state: present
+
+- name: install packer
+  git:
+    repo: https://github.com/wbthomason/packer.nvim
+    dest: '/home/{{ user }}/.local/share/nvim/site/pack/packer/start/packer.nvim'
+    depth: 1
+  become: yes
+  become_user: '{{ user }}'
+
 - name: copy neovim configuration
   copy:
     src: 'nvim'
@@ -13,3 +26,10 @@
     mode: 0500
     owner: '{{ user }}'
     group: '{{ group }}'
+  register: neovim_config
+
+- name: install plugins
+  command: "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
+  become: yes
+  become_user: '{{ user }}'
+  when: neovim_config.changed

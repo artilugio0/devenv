@@ -22,3 +22,4 @@
     - virtualbox-guest
     - ssh
     - golang
+    - rust

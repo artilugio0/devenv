@@ -1,0 +1,28 @@
+- name: check if rust is already installed
+  stat:
+    path: '/home/{{ user }}/.cargo'
+  register: cargo_directory
+
+- name: install rust
+  block:
+    - name: download rustup script
+      get_url:
+        url: "https://sh.rustup.rs"
+        dest: /tmp/rustup.sh
+        mode: 0500
+        owner: '{{ user }}'
+        group: '{{ group }}'
+
+    - name: execute rust installation script
+      command: '/tmp/rustup.sh -y --no-modify-path'
+      become: yes
+      become_user: '{{ user }}'
+  when: not cargo_directory.stat.exists
+
+- name: configure rust environment
+  template:
+    src: 01-rust.env
+    dest: '/home/{{ user }}/.profile.d/01-rust.env'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

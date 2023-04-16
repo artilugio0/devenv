@@ -5,3 +5,11 @@
     mode: 0555
     owner: root
     group: root
+
+- name: copy neovim configuration
+  copy:
+    src: 'nvim'
+    dest: '/home/{{ user }}/.config/'
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'

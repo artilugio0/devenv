@@ -4,22 +4,78 @@
   vars_files:
     - config_vars.yml
   roles:
-    - begin
-    - sudo
-    - user
-    - profile
-    - scriptsdir
-    - fsutils
-    - neovim
-    - xorg
-    - lightdm
-    - keyboard
-    - i3
-    - urxvt
-    - tmux
-    - git
-    - firefox
-    - virtualbox-guest
-    - ssh
-    - golang
-    - rust
+    - role: begin
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and begin_role is defined)
+
+    - role: sudo
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and sudo_role is defined)
+
+    - role: user
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and user_role is defined)
+
+    - role: profile
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and profile_role is defined)
+
+    - role: scriptsdir
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and scriptsdir_role is defined)
+
+    - role: fsutils
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and fsutils_role is defined)
+
+    - role: neovim
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and neovim_role is defined)
+
+    - role: xorg
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and xorg_role is defined)
+
+    - role: lightdm
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and lightdm_role is defined)
+
+    - role: keyboard
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and keyboard_role is defined)
+
+    - role: i3
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and i3_role is defined)
+
+    - role: urxvt
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and urxvt_role is defined)
+
+    - role: tmux
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and tmux_role is defined)
+
+    - role: git
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and git_role is defined)
+
+    - role: firefox
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and firefox_role is defined)
+
+    - role: virtualbox-guest
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and guest_role is defined)
+
+    - role: ssh
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and ssh_role is defined)
+
+    - role: golang
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and golang_role is defined)
+
+    - role: rust
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and rust_role is defined)

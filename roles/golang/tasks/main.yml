@@ -1,0 +1,47 @@
+- name: create go installation directory
+  file:
+    dest: '/home/{{ user }}/go/{{ golang_version }}'
+    state: directory
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: create gopath directory
+  file:
+    dest: '/home/{{ user }}/go/{{ golang_version }}/gopath'
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: download golang
+  unarchive:
+    src: 'https://go.dev/dl/go{{ golang_version }}.linux-amd64.tar.gz'
+    dest: '/home/{{ user }}/go/{{ golang_version }}'
+    remote_src: yes
+    owner: '{{ user }}'
+    group: '{{ group }}'
+    mode: 0500
+    creates: '/home/{{ user }}/go/{{ golang_version }}/go'
+
+- name: configure golang environment
+  template:
+    src: 01-golang.env
+    dest: '/home/{{ user }}/.profile.d/01-golang.env'
+    owner: '{{ user }}'
+    group: '{{ group }}'
+    mode: 0400
+
+- name: install gopls
+  shell: 'GOPATH=/home/{{ user }}/go/{{ golang_version }}/gopath /home/{{ user }}/go/{{ golang_version }}/go/bin/go install golang.org/x/tools/gopls@latest'
+  args:
+    creates: '/home/{{ user }}/go/{{ golang_version }}/go/bin/gopls'
+  become: yes
+  become_user: '{{ user }}'
+
+- name: install goimports
+  shell: 'GOPATH=/home/{{ user }}/go/{{ golang_version }}/gopath /home/{{ user }}/go/{{ golang_version }}/go/bin/go install golang.org/x/tools/cmd/goimports@latest'
+  args:
+    creates: '/home/{{ user }}/go/{{ golang_version }}/go/bin/goimports'
+  become: yes
+  become_user: '{{ user }}'

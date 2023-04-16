@@ -21,3 +21,4 @@
     - firefox
     - virtualbox-guest
     - ssh
+    - golang

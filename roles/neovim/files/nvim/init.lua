@@ -1,3 +1,7 @@
 require 'elaleman.mappings'
+require 'elaleman.options'
 require 'elaleman.plugins'
 require 'elaleman.telescope'
+require 'elaleman.autocomplete'
+require 'elaleman.lsp'
+require 'elaleman.colorscheme'

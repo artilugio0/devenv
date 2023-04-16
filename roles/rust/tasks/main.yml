@@ -26,3 +26,10 @@
     mode: 0400
     owner: '{{ user }}'
     group: '{{ group }}'
+
+- name: install needed development package
+  pacman:
+    name:
+      - cmake
+      - base-devel
+    state: present

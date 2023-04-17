@@ -40,22 +40,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.format { async = true }
     end, opts)
 
+    local this_buf = ev.buf
     vim.api.nvim_create_autocmd({"BufWritePre"}, {
       callback = function(ev)
-        vim.lsp.buf.format { async = false }
-      end
+        pcall(vim.lsp.buf.format, { async = false, timeout = 100 })
+      end,
+      buffer = this_buf,
     })
   end,
 })
 
 -- configure cmp capabilities
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 lspconfig.rust_analyzer.setup({
-  capabilities = capabilities,
   cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' }
 })
 
-lspconfig.gopls.setup({
-  capabilities = capabilities
-})
+lspconfig.gopls.setup({})

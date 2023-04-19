@@ -4,4 +4,5 @@
       - cmake
       - base-devel
       - fakeroot
+      - man
     state: present

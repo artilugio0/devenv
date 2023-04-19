@@ -1,0 +1,7 @@
+- name: install needed development packages
+  pacman:
+    name:
+      - cmake
+      - base-devel
+      - fakeroot
+    state: present

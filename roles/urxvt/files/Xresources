@@ -24,3 +24,6 @@ URxvt.color12: #42a5f5
 URxvt.color13: #d74dba
 URxvt.color14: #55dbbe
 URxvt.color15: #f0f0f0
+
+! Perl extensions
+URxvt.perl-ext-common: default,resize-font

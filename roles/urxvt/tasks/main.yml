@@ -3,6 +3,47 @@
     name: rxvt-unicode
     state: present
 
+- name: check if urxvt-resize-font-git is installed
+  shell: 'pacman -Q urxvt-resize-font-git >/dev/null 2>&1'
+  become: yes
+  become_user: '{{ user }}'
+  ignore_errors: true
+  changed_when: false
+  register: urxvt_resize
+
+- name: install urxvt-resize-font-git
+  block:
+    - name: make temporary dir
+      file:
+        dest: /tmp/urxvt-resize
+        state: directory
+        mode: 0500
+        owner: '{{ user }}'
+        group: '{{ group }}'
+
+    - name: download urxvt-resize-font-git from AUR
+      unarchive:
+        src: 'https://aur.archlinux.org/cgit/aur.git/snapshot/urxvt-resize-font-git.tar.gz'
+        dest: '/tmp/urxvt-resize'
+        remote_src: yes
+        owner: '{{ user }}'
+        group: '{{ group }}'
+        mode: 0700
+        creates: '/tmp/urxvt-resize/urxvt-resize-font-git'
+
+    - name: make urxvt-resize-font-git package
+      command: 'makepkg -f'
+      args:
+        chdir: '/tmp/urxvt-resize/urxvt-resize-font-git'
+      become: yes
+      become_user: '{{ user }}'
+
+    - name: install the package urxvt-resize-font-git
+      shell: 'pacman -U --noconfirm urxvt-resize-font-git*.zst'
+      args:
+        chdir: '/tmp/urxvt-resize/urxvt-resize-font-git'
+  when: urxvt_resize.rc != 0
+
 - name: configure urxvt
   copy:
     src: Xresources
@@ -17,4 +58,3 @@
   become: yes
   become_user: '{{ user }}'
   when: configure_urxvt.changed
-

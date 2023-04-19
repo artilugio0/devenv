@@ -1,4 +1,5 @@
 URxvt.font: xft:Source Code Pro:antialias=true:size=16:minspace=False
+URxvt.letterSpace: -1
 
 ! Remove scrollbar
 URxvt.scrollBar: false

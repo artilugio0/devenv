@@ -5,4 +5,5 @@
       - base-devel
       - fakeroot
       - man
+      - pkgconf
     state: present

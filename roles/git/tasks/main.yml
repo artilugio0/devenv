@@ -2,3 +2,11 @@
   pacman:
     name: git
     state: present
+
+- name: configure git
+  copy:
+    src: gitconfig
+    dest: '/home/{{ user }}/.gitconfig'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

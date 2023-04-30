@@ -32,6 +32,10 @@
       when: single_role_exec is undefined
         or (single_role_exec is defined and fsutils_role is defined)
 
+    - role: nettools
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and nettools_role is defined)
+
     - role: neovim
       when: single_role_exec is undefined
         or (single_role_exec is defined and neovim_role is defined)

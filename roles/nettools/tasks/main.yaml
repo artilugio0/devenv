@@ -1,0 +1,4 @@
+- name: install netcat
+  pacman:
+    name: netcat
+    state: present

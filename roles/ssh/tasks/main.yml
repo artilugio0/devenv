@@ -3,6 +3,14 @@
     name: openssh
     state: present
 
+- name: create ssh config dir
+  file:
+    path: '/home/{{ user }}/.ssh'
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
 - name: configure ssh client
   template:
     src: config

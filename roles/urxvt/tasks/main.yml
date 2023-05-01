@@ -58,3 +58,4 @@
   become: yes
   become_user: '{{ user }}'
   when: configure_urxvt.changed
+  ignore_errors: true

@@ -27,3 +27,4 @@
   become: yes
   become_user: '{{ user }}'
   when: configure_i3.changed
+  ignore_errors: true

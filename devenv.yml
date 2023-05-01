@@ -36,6 +36,10 @@
       when: single_role_exec is undefined
         or (single_role_exec is defined and nettools_role is defined)
 
+    - role: git
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and git_role is defined)
+
     - role: neovim
       when: single_role_exec is undefined
         or (single_role_exec is defined and neovim_role is defined)
@@ -63,10 +67,6 @@
     - role: tmux
       when: single_role_exec is undefined
         or (single_role_exec is defined and tmux_role is defined)
-
-    - role: git
-      when: single_role_exec is undefined
-        or (single_role_exec is defined and git_role is defined)
 
     - role: firefox
       when: single_role_exec is undefined

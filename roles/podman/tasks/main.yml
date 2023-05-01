@@ -1,0 +1,22 @@
+- name: install podman
+  pacman:
+    name:
+      - podman
+      - podman-compose
+    state: present
+
+- name: configure podman
+  copy:
+    src: registries.conf
+    dest: /etc/containers/registries.conf
+    mode: 0444
+    owner: root
+    group: root
+
+- name: configure podman environment
+  template:
+    src: 01-podman.env
+    dest: '/home/{{ user }}/.profile.d/01-podman.env'
+    mode: 0400
+    owner: '{{ user }}'
+    group: '{{ group }}'

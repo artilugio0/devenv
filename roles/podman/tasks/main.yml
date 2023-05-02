@@ -1,8 +1,9 @@
-- name: install podman
+- name: install podman and dependencies
   pacman:
     name:
       - podman
       - podman-compose
+      - aardvark-dns
     state: present
 
 - name: configure podman

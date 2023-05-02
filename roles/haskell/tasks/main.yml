@@ -1,0 +1,8 @@
+- name: install haskell development tools
+  pacman:
+    name:
+      - ghc
+      - cabal-install
+      - stack
+      - haskell-language-server
+    state: present

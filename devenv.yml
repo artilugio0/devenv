@@ -95,3 +95,7 @@
     - role: podman
       when: single_role_exec is undefined
         or (single_role_exec is defined and podman_role is defined)
+
+    - role: haskell
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and haskell_role is defined)

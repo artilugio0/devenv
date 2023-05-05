@@ -1,4 +1,11 @@
-- name: install firefox
+- name: install firefox - Archlinux
   pacman:
     name: firefox
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install firefox - Debian
+  apt:
+    name: firefox-esr
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'

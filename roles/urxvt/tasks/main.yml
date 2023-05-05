@@ -1,7 +1,14 @@
-- name: install urxvt
+- name: install urxvt - Archlinux
   pacman:
     name: rxvt-unicode
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install urxvt - Debian
+  apt:
+    name: rxvt-unicode
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'
 
 - name: check if urxvt-resize-font-git is installed
   shell: 'pacman -Q urxvt-resize-font-git >/dev/null 2>&1'
@@ -10,6 +17,7 @@
   ignore_errors: true
   changed_when: false
   register: urxvt_resize
+  when: ansible_facts['distribution'] == 'Archlinux'
 
 - name: install urxvt-resize-font-git
   block:
@@ -42,7 +50,7 @@
       shell: 'pacman -U --noconfirm urxvt-resize-font-git*.zst'
       args:
         chdir: '/tmp/urxvt-resize/urxvt-resize-font-git'
-  when: urxvt_resize.rc != 0
+  when: ansible_facts['distribution'] == 'Archlinux' and urxvt_resize.rc != 0
 
 - name: configure urxvt
   copy:

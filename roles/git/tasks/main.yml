@@ -1,7 +1,14 @@
-- name: install git
+- name: install git - Archlinux
   pacman:
     name: git
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install git - Debian
+  apt:
+    name: git
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'
 
 - name: configure git
   copy:

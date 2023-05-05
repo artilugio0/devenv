@@ -5,7 +5,7 @@
 
 - name: install nvm
   block:
-    - name: download rustup script
+    - name: download nvm installation script
       get_url:
         url: 'https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh'
         dest: /tmp/nvm.sh
@@ -28,7 +28,7 @@
     group: '{{ group }}'
 
 - name: 'install node {{ node_version }}'
-  shell: 'source /home/{{ user }}/.nvm/nvm.sh ; nvm install {{ node_version }} ; nvm use {{ node_version }}'
+  shell: 'bash -c "source /home/{{ user }}/.nvm/nvm.sh ; nvm install {{ node_version }} ; nvm use {{ node_version }}"'
   args:
     creates: '/home/{{ user }}/.nvm/versions/node/v{{ node_version}}/bin/node'
   become: yes

@@ -33,5 +33,3 @@
     creates: '/home/{{ user }}/.nvm/versions/node/v{{ node_version}}/bin/node'
   become: yes
   become_user: '{{ user }}'
-
-

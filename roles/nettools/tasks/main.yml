@@ -1,4 +1,11 @@
-- name: install netcat
+- name: install netcat - Archlinux
   pacman:
     name: netcat
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install netcat - Debian
+  apt:
+    name: netcat
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'

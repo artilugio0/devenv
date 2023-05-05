@@ -1,9 +1,18 @@
-- name: install lightdm
+- name: install lightdm - Archlinux
   pacman:
     name:
       - lightdm
       - lightdm-gtk-greeter
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install lightdm - Debian
+  apt:
+    name:
+      - lightdm
+      - lightdm-gtk-greeter
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'
 
 - name: enable lightdm service
   service:

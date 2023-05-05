@@ -19,13 +19,6 @@
       become_user: '{{ user }}'
   when: not cargo_directory.stat.exists
 
-- name: install needed development package
-  pacman:
-    name:
-      - cmake
-      - base-devel
-    state: present
-
 - name: install rust-analyzer
   command: '/home/{{ user }}/.cargo/bin/rustup component add rust-analyzer'
   args:

@@ -1,4 +1,11 @@
-- name: install fuse
+- name: install fuse - Archlinux
   pacman:
     name: fuse
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install fuse - Debian
+  apt:
+    name: fuse
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'

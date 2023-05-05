@@ -6,10 +6,17 @@
     owner: root
     group: root
 
-- name: install neovim configuration dependencies
+- name: install neovim configuration dependencies - Archlinux
   pacman:
     name: ripgrep
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install neovim configuration dependencies - Debian
+  apt:
+    name: ripgrep
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'
 
 - name: install packer
   git:

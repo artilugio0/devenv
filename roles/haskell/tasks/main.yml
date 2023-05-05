@@ -1,4 +1,4 @@
-- name: install haskell development tools
+- name: install haskell development tools - Archlinux
   pacman:
     name:
       - ghc
@@ -6,3 +6,13 @@
       - stack
       - haskell-language-server
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install haskell development tools - Debian
+  apt:
+    name:
+      - ghc
+      - cabal-install
+      - haskell-stack
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'

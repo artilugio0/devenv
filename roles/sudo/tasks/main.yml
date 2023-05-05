@@ -1,7 +1,14 @@
-- name: install sudo
+- name: install sudo - Archlinux
   pacman:
     name: sudo
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install sudo - Debian
+  apt:
+    name: sudo
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'
 
 - name: configure sudoers
   copy:

@@ -1,4 +1,4 @@
-- name: install xorg-server
+- name: install xorg-server - Archlinux
   pacman:
     name:
       - xorg-server
@@ -7,3 +7,14 @@
       - xorg-xinit
       - xterm
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install xorg-server
+  apt:
+    name:
+      - xserver-xorg
+      - xserver-xorg-video-vmware
+      - xinit
+      - xterm
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'

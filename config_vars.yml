@@ -3,4 +3,4 @@ uid: 1234
 group: 'elaleman'
 gid: 1234
 ssh_key_file: '~/.ssh/elalemanx-github'
-virtualbox_guest: false
+virtualbox_guest: true

@@ -1,7 +1,14 @@
-- name: install openssh
+- name: install openssh - Archlinux
   pacman:
     name: openssh
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install openssh - Debian
+  apt:
+    name: openssh-client
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'
 
 - name: create ssh config dir
   file:

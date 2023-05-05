@@ -1,4 +1,4 @@
-- name: install needed development packages
+- name: install needed development packages - Archlinux
   pacman:
     name:
       - cmake
@@ -7,3 +7,15 @@
       - man
       - pkgconf
     state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: install needed development packages - Debian
+  apt:
+    name:
+      - cmake
+      - build-essential
+      - fakeroot
+      - man
+      - pkgconf
+    state: present
+  when: ansible_facts['distribution'] == 'Debian'

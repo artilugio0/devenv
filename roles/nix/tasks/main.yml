@@ -1,0 +1,36 @@
+- name: check if nix is already installed
+  stat:
+    path: '/home/{{ user }}/.nix-profile'
+  register: nix_file
+
+- name: create nix directory
+  file:
+    path: /nix
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: install nix
+  block:
+    - name: download nix installation script
+      get_url:
+        url: 'https://nixos.org/nix/install'
+        dest: '/tmp/nix-install.sh'
+        mode: 0500
+        owner: '{{ user }}'
+        group: '{{ group }}'
+
+    - name: execute nix installation script
+      shell: 'NIX_INSTALLER_NO_MODIFY_PROFILE=1 /tmp/nix-install.sh'
+      become: yes
+      become_user: '{{ user }}'
+  when: not nix_file.stat.exists
+
+- name: configure nix environment
+  copy:
+    src: 01-nix.env
+    dest: '/home/{{ user }}/.profile.d/01-nix.env'
+    owner: '{{ user }}'
+    group: '{{ group }}'
+    mode: 0400

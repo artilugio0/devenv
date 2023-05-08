@@ -56,6 +56,10 @@
       when: single_role_exec is undefined
         or (single_role_exec is defined and fonts_role is defined)
 
+    - role: nix
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and nix_role is defined)
+
     - role: lightdm
       when: single_role_exec is undefined
         or (single_role_exec is defined and lightdm_role is defined)

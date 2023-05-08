@@ -1,0 +1,6 @@
+- name: install fonts - Archlinux
+  pacman:
+    name:
+      - ttf-bitstream-vera-mono-nerd
+    state: present
+  when: ansible_facts['distribution'] == 'Archlinux'

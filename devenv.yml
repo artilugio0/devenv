@@ -111,3 +111,7 @@
     - role: haskell
       when: single_role_exec is undefined
         or (single_role_exec is defined and haskell_role is defined)
+
+    - role: foundry
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and foundry_role is defined)

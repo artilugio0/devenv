@@ -1,0 +1,39 @@
+- name: create foundry directory
+  file:
+    dest: '/home/{{ user }}/.foundry'
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: create foundry bin directory
+  file:
+    dest: '/home/{{ user }}/.foundry/bin'
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: create foundry man directory
+  file:
+    dest: '/home/{{ user }}/.foundry/share/man/man1'
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: install foundryup
+  get_url:
+    url: 'https://raw.githubusercontent.com/foundry-rs/foundry/master/foundryup/foundryup'
+    dest: '/home/{{ user }}/.foundry/bin/foundryup'
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: configure foundry environment
+  template:
+    src: 01-foundry.env
+    dest: '/home/{{ user }}/.profile.d/01-foundry.env'
+    owner: '{{ user }}'
+    group: '{{ group }}'
+    mode: 0400

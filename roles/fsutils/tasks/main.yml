@@ -1,11 +1,15 @@
-- name: install fuse - Archlinux
+- name: install filesystem utilities - Archlinux
   pacman:
-    name: fuse
+    name:
+    - fuse
+    - tree
     state: present
   when: ansible_facts['distribution'] == 'Archlinux'
 
-- name: install fuse - Debian
+- name: install filesystem utilities - Debian
   apt:
-    name: fuse
+    name:
+    - fuse
+    - tree
     state: present
   when: ansible_facts['distribution'] == 'Debian'

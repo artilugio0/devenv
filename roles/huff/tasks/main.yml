@@ -34,6 +34,8 @@
   command: '/home/{{ user }}/.huff/bin/huffup'
   args:
     creates: '/home/{{ user }}/.huff/bin/huffc'
+  become: yes
+  become_user: '{{ user }}'
 
 - name: configure huff environment
   template:

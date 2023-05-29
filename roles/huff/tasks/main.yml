@@ -1,0 +1,44 @@
+- name: create huff directory
+  file:
+    dest: '/home/{{ user }}/.huff'
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: create huff bin huff
+  file:
+    dest: '/home/{{ user }}/.huff/bin'
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: create huff man directory
+  file:
+    dest: '/home/{{ user }}/.huff/share/man/man1'
+    state: directory
+    mode: 0700
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: install huffup
+  get_url:
+    url: 'https://raw.githubusercontent.com/huff-language/huff-rs/main/huffup/huffup'
+    dest: '/home/{{ user }}/.huff/bin/huffup'
+    mode: 0500
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: install huff
+  command: '/home/{{ user }}/.huff/bin/huffup'
+  args:
+    creates: '/home/{{ user }}/.huff/bin/huffc'
+
+- name: configure huff environment
+  template:
+    src: 01-huff.env
+    dest: '/home/{{ user }}/.profile.d/01-huff.env'
+    owner: '{{ user }}'
+    group: '{{ group }}'
+    mode: 0400

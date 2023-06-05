@@ -33,3 +33,10 @@
     creates: '/home/{{ user }}/.nvm/versions/node/v{{ node_version}}/bin/node'
   become: yes
   become_user: '{{ user }}'
+
+- name: 'install yarn {{ node_version }}'
+  shell: 'bash -c "source /home/{{ user }}/.nvm/nvm.sh ; npm install --global yarn"'
+  args:
+    creates: '/home/{{ user }}/.nvm/versions/node/v{{ node_version}}/bin/yarn'
+  become: yes
+  become_user: '{{ user }}'

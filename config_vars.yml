@@ -1,6 +1,6 @@
-user: 'elaleman'
+user: '0xeccec'
 uid: 1234
-group: 'elaleman'
+group: '0xeccec'
 gid: 1234
-ssh_key_file: '~/.ssh/elalemanx-github'
+ssh_key_file: '~/.ssh/0xeccec-github'
 virtualbox_guest: true

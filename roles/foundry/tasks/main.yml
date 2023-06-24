@@ -30,6 +30,13 @@
     owner: '{{ user }}'
     group: '{{ group }}'
 
+- name: install foundry
+  command: '/home/{{ user }}/.foundry/bin/foundryup'
+  args:
+    creates: '/home/{{ user }}/.foundry/bin/forge'
+  become: yes
+  become_user: '{{ user }}'
+
 - name: configure foundry environment
   template:
     src: 01-foundry.env

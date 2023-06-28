@@ -1,0 +1,5 @@
+- name: install zola - Archlinux
+  pacman:
+    name: zola
+    state: present
+  when: ansible_facts['distribution'] == 'Archlinux'

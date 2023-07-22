@@ -123,3 +123,11 @@
     - role: zola
       when: single_role_exec is undefined
         or (single_role_exec is defined and zola_role is defined)
+
+    - role: aws
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and aws_role is defined)
+
+    - role: terraform
+      when: single_role_exec is undefined
+        or (single_role_exec is defined and terraform_role is defined)

@@ -1,0 +1,5 @@
+- name: 'install terraform (Archlinux)'
+  pacman:
+    name: terraform
+    state: present
+  when: ansible_facts['distribution'] == 'Archlinux'

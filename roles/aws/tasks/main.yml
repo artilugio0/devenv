@@ -1,0 +1,5 @@
+- name: 'install AWS cli (Archlinux)'
+  pacman:
+    name: aws-cli-v2
+    state: present
+  when: ansible_facts['distribution'] == 'Archlinux'

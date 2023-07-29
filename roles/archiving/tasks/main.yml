@@ -1,0 +1,7 @@
+- name: install archiving utilities - Archlinux
+  pacman:
+    name:
+    - zip
+    - unzip
+    state: present
+  when: ansible_facts['distribution'] == 'Archlinux'
